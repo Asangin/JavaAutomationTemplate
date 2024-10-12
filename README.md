@@ -1,9 +1,6 @@
 # Template for Java Automation
 
-> Project that will serve as a future template for other different projects.
-> 
-> 
-> 
+> A project designed to serve as a template for future projects, built on the General Test Automation Architecture (gTAA).
 
 ## Run allure report
 
