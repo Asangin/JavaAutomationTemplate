@@ -1,13 +1,11 @@
 package com.skryl.api;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.google.gson.Gson;
+import com.skryl.api.user.UserApi;
+import com.skryl.api.user.UserApiStep;
 import com.skryl.model.User;
-import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.RestAssured;
-import io.restassured.config.ObjectMapperConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,11 +13,12 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static io.restassured.mapper.ObjectMapperType.GSON;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class ApiExampleTest {
+    private static UserApi userApi;
+    private static UserApiStep userApiStep;
 
     @RegisterExtension
     static WireMockExtension wm = WireMockExtension.newInstance()
@@ -28,11 +27,9 @@ public class ApiExampleTest {
 
     @BeforeAll
     static void setupMock() {
-        // You can get ports, base URL etc. via WireMockRuntimeInfo
         WireMockRuntimeInfo wm1RuntimeInfo = wm.getRuntimeInfo();
-        RestAssured.baseURI = wm1RuntimeInfo.getHttpBaseUrl();
-        RestAssured.config = RestAssured.config().objectMapperConfig(new ObjectMapperConfig(GSON));
-        RestAssured.filters(new AllureRestAssured());
+        userApi = new UserApi(wm1RuntimeInfo.getHttpBaseUrl());
+        userApiStep = new UserApiStep(userApi);
     }
 
     @Test
@@ -41,13 +38,9 @@ public class ApiExampleTest {
         var user = new User()
                 .name("Skryl")
                 .age(39);
-        log.info("Created user %s".formatted(user));
-        var response = RestAssured.given()
-                .body(user)
-                .post("/users");
-        response.then().statusCode(200);
-        assertThat(response.getBody().jsonPath().getString("id"))
-                .isEqualTo("12345");
+        log.info("Create user %s".formatted(user));
+        var userId = userApiStep.createUser(user);
+        assertThat(userId).isEqualTo("12345");
     }
 
     @Test
@@ -62,10 +55,9 @@ public class ApiExampleTest {
                                 .withBody(new Gson().toJson(user))
                 )
         );
-        var response = RestAssured.get("/users/12345");
-        response.then().statusCode(200);
-        var actualUser = response.as(User.class);
-        log.info("Created user %s".formatted(user));
+
+        var actualUser = userApiStep.getUserById("12345");
+        log.info("Get user %s".formatted(user));
         assertThat(actualUser.age()).isGreaterThan(30);
     }
 }
