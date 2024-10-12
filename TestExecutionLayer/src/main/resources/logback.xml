@@ -10,17 +10,15 @@
 
     <appender name="ALLURE" class="com.skryl.logging.LogbackAllureAppender"/>
 
-    <!-- Logger Configurations -->
-    <root level="WARN">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="ALLURE" />
-    </root>
-
-    <logger name="com.skryl" level="DEBUG">
+    <logger name="com.skryl" level="DEBUG" additivity="false">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="ALLURE" />
     </logger>
 
+    <root level="WARN">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ALLURE" />
+    </root>
     <logger name="io.qameta.allure" level="OFF" />
 
 </configuration>
