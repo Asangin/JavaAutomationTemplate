@@ -20,10 +20,6 @@ public class DeclarativeWireMockTest {
         // The static DSL will be automatically configured for you
         stubFor(get("/static-dsl").willReturn(ok()));
 
-        // Instance DSL can be obtained from the runtime info parameter
-        WireMock wireMock = wmRuntimeInfo.getWireMock();
-        wireMock.register(get("/instance-dsl").willReturn(ok()));
-
         // Info such as port numbers is also available
         var httpBaseUrl = wmRuntimeInfo.getHttpBaseUrl();
         log.info("HTTP base Url: %s".formatted(httpBaseUrl));
