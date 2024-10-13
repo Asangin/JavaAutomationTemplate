@@ -33,7 +33,7 @@ public class ApiExampleTest {
     }
 
     @Test
-    void test1() {
+    void createUserTest() {
         wm.stubFor(post("/users").willReturn(okJson("{\"id\":\"12345\"}")));
         var user = new User()
                 .name("Skryl")
@@ -44,7 +44,7 @@ public class ApiExampleTest {
     }
 
     @Test
-    void test2() {
+    void retrieveUserDataByUserIdTest() {
         var user = new User()
                 .name("Hello")
                 .age(39);
