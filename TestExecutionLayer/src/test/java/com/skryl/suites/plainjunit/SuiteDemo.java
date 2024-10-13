@@ -1,4 +1,4 @@
-package com.skryl.suites;
+package com.skryl.suites.plainjunit;
 
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
