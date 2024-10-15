@@ -1,8 +1,7 @@
 # Template for Java Automation
 
-> A project designed to serve as a template for future projects, built on the General Test Automation Architecture (gTAA).
-> 
-
+> A project designed to serve as a template for future projects, built on the General Test Automation Architecture (
+> gTAA).
 
 ## Rebuild project
 
@@ -10,26 +9,32 @@
  mvn clean install -DskipTests
  ```
 
-## Run Junit5 test suite
+## Junit 5 Execution Layer
+
+### Run test suite
 
 ```bash
-mvn -pl TestExecutionLayer -Dtest=SuiteDemo test
+mvn -pl Junit5ExecutionLayer clean -Dtest=Smoke test
 ```
 
-## Run Cucumber suite
+### Run allure report
 
 ```bash
-mvn test
+allure serve Junit5ExecutionLayer/target/allure-results 
 ```
 
+## TestNG Execution Layer
+
+### Run test suite
+
 ```bash
-mvn -pl TestExecutionLayer,TestDefinitionLayer test -Dgroups="regression"
+mvn -pl TestNgExecutionLayer clean ...
 ```
 
-## Run allure report
+### Run allure report
 
 ```bash
-allure serve TestExecutionLayer/target/allure-results 
+allure serve TestNgExecutionLayer/target/allure-results 
 ```
 
 ## Update project version
