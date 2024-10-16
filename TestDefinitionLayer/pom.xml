@@ -28,6 +28,11 @@
             <artifactId>TestAdaptationLayer</artifactId>
             <version>1.0.3-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>1.47.0</version>
+        </dependency>
     </dependencies>
 
 </project>

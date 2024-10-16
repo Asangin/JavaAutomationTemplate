@@ -1,12 +1,13 @@
-package com.skryl.api;
+package com.skryl.user.api;
 
+import com.skryl.api.UserApi;
 import com.skryl.model.User;
 
 public class UserApiStep {
-    private UserApi userApi;
+    private final UserApi userApi;
 
-    public UserApiStep(UserApi userApi) {
-        this.userApi = userApi;
+    public UserApiStep(String baseUrl) { // TODO need to passed some test data java object
+        this.userApi  = new UserApi(baseUrl);
     }
 
     public String createUser(User user) {
@@ -21,4 +22,5 @@ public class UserApiStep {
         response.then().statusCode(200);
         return response.as(User.class);
     }
+
 }

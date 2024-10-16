@@ -1,5 +1,6 @@
 package com.skryl.ui;
 
+import com.skryl.ui.google.BrowserNavigation;
 import com.skryl.ui.google.GooglePage;
 import com.skryl.ui.google.SearchResultsPage;
 import org.junit.jupiter.api.Tag;
@@ -12,7 +13,7 @@ public class GettingStartedWithSelenideTest {
     @Test
     @Tag("smoke")
     public void userCanSearch() {
-        new Browser().openUrl("https://duckduckgo.com");
+        new BrowserNavigation().openUrl("https://duckduckgo.com");
         new GooglePage().searchFor("selenide java");
 
         SearchResultsPage results = new SearchResultsPage();

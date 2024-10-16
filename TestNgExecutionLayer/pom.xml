@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>com.skryl</groupId>
-            <artifactId>TestAdaptationLayer</artifactId>
+            <artifactId>TestDefinitionLayer</artifactId>
             <version>1.0.3-SNAPSHOT</version>
         </dependency>
         <dependency>

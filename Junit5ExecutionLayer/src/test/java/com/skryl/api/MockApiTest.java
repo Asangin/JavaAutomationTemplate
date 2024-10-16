@@ -4,6 +4,7 @@ import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.google.gson.Gson;
 import com.skryl.model.User;
+import com.skryl.user.api.UserApiStep;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
@@ -16,7 +17,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 public class MockApiTest {
-    private static UserApi userApi;
     private static UserApiStep userApiStep;
 
     @RegisterExtension
@@ -27,8 +27,7 @@ public class MockApiTest {
     @BeforeAll
     static void setupMock() {
         WireMockRuntimeInfo wm1RuntimeInfo = wm.getRuntimeInfo();
-        userApi = new UserApi(wm1RuntimeInfo.getHttpBaseUrl());
-        userApiStep = new UserApiStep(userApi);
+        userApiStep = new UserApiStep(wm1RuntimeInfo.getHttpBaseUrl());
     }
 
     @Test
