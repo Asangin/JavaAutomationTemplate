@@ -3,7 +3,7 @@ package com.skryl.api;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.google.gson.Gson;
 import com.skryl.model.User;
-import com.skryl.user.api.UserApiStep;
+import com.skryl.api.user.UserApiStep;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;

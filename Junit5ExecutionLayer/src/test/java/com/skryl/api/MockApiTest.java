@@ -4,7 +4,7 @@ import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import com.github.tomakehurst.wiremock.junit5.WireMockRuntimeInfo;
 import com.google.gson.Gson;
 import com.skryl.model.User;
-import com.skryl.user.api.UserApiStep;
+import com.skryl.api.user.UserApiStep;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
